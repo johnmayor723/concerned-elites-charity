@@ -121,7 +121,7 @@
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active">
-								<a href="index.html">Home</a>
+								<a href="/" method="get">Home</a>
 							</li>
 							<li>
 								<a href="#" class="fh5co-sub-ddown">Get Involved</a>
@@ -158,7 +158,7 @@
 				<div class="desc animate-box">
 					<h2><strong>Donate</strong> for the <strong>Poor Children</strong></h2>
 					<span>HandCrafted by <a href="http://frehtml5.co/" target="_blank" class="fh5co-site-name">FreeHTML5.co</a></span>
-					<span><a class="btn btn-primary btn-lg" href="#">Donate Now</a></span>
+					<span><a class="btn btn-primary btn-lg" href="#" id="myBtm">Donate Now</a></span>
 				</div>
 			</div>
 
@@ -521,7 +521,23 @@
   </div>
 
 </div>
-       
+      
+      <div id="myMedal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+  	<span class="close" id="spa">&times;</span>
+   <h2> Partner with us today </h2>
+   <strong>
+   	   <h3>Donate For The Poor Children of our Communities</h3>
+   <p>Pay to our bank account: The Concerned Elites Charity Foundations.</p>
+   <P>Polaris Bank Account number:4091258606</P>
+  </div>
+   </strong>
+   
+
+</div>
+        
 		
 		
 		
@@ -601,7 +617,35 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+  var medal = document.getElementById("myMedal");
+
+// Get the button that opens the modal
+var btm = document.getElementById("myBtm");
+var spa = document.getElementById("spa")
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btm.onclick = function() {
+  medal.style.display = "block";
 }
+
+// When the user clicks on <span> (x), close the modal
+spa.onclick = function() {
+  medal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == medal) {
+    medal.style.display = "none";
+  }
+}
+}
+  </script>
+  <script>
+   // Get the modal
+
   </script>
 	</body>
 </html>

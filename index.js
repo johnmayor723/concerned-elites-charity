@@ -6,6 +6,8 @@ const passport = require('passport')
 const LocalStrategy = require("passport-local")
 const app = express()
 const User = require("./models/user")
+const Profile = require("./models/profile")
+const Project = require("./models/project")
 
 var DbUrl = "mongodb://charity:sito123@ds231090.mlab.com:31090/tekdealzdb"
 mongoose.connect(DbUrl)
@@ -34,7 +36,7 @@ passport.deserializeUser(User.deserializeUser());
 
 //charity profilesschema
 
-var profileSchema = new mongoose.Schema({
+/*var profileSchema = new mongoose.Schema({
     name: String,
     image: String,
     description: String
@@ -47,7 +49,7 @@ var Profiles = mongoose.model("Profiles", profileSchema)
 var userSchema = new mongoose.Schema({
     username: String,
     password:String
-})
+})*/
 
 //main routes
 
@@ -101,10 +103,12 @@ app.post("/login", passport.authenticate("local",
 
 //admin routes
 
+//admin dashboard
 app.get("/profiles", function(req, res) {
     res.render("profiles")
 })
 
+//create members profile
 app.post('/profiles', function(req, res){
     var name          = req.body.name;
     var description   = req.body.desc
@@ -114,7 +118,30 @@ app.post('/profiles', function(req, res){
         description : description, 
         image : image
     }
-      Profiles.create(newProfile, function(err, newlyCreated){
+      Profile.create(newProfile, function(err, newlyCreated){
+        if(err){
+            console.log(err);
+        } else {
+            //redirect back to campgrounds page
+            res.redirect("/profiles");
+           console.log(newlyCreated)
+        }
+    });
+   
+    
+})
+
+//create projects in the database
+app.post('/createProject', function(req, res){
+    var name          = req.body.name;
+    var description   = req.body.desc
+    var image         = req.body.image
+    var newProject = {
+        name : name, 
+        description : description, 
+        image : image
+    }
+      Profile.create(newProject, function(err, newlyCreated){
         if(err){
             console.log(err);
         } else {
