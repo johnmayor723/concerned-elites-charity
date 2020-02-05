@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>profile</title>
+  <!-- Font Awesome -->
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/css/mdb.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+      .mycontainer{
+          height: 150px;
+          padding:50px;
+      }
+      #mecontent{
+          padding top:600px;
+      }
+      .nome{
+          height:500px;
+      }
+  </style>
+</head>
+
+<body>
+
+  <!-- Start your project here-->
+ <ul class="nav md-tabs  black lighten-4 mx-0 mb-0 mt-1">
+  <li class="nav-item">
+    <a class="nav-link active" href="/home">Logo</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/home" method="get">Home</a>
+  </li>
+</ul>
+
+<div id="mycontainer">
+    <!-- Jumbotron -->
+<div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/forest2.jpg);">
+  <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+    <div class="py-5">
+
+      <!-- Content -->
+      <h5 class="h5 orange-text"><i class="fas fa-dashboard-retro"></i> Dashboard</h5>
+      <h2 class="card-title h2 my-4 py-2">Hello Admin</h2>
+      <p class="mb-4 pb-2 px-md-5 mx-md-5">welcome to your dashboard</p>
+     
+
+    </div>
+  </div>
+</div>
+<!-- Jumbotron -->
+</div>
+
+<div id ="nome"> 
+ <div class="container grey lighten-2">
+   <div class="row">
+     <div class="col-md-6">
+       projects here
+     </div>
+     <div class="col-md-6">
+       profiles here
+     </div>
+   </div>
+ </div>
+</div>
+
+<div class="mecontent">
+ <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+       <form class="text-center border border-light p-5" action="/createProject" method="post">
+
+    <p class="h4 mb-4">New Projects</p>
+
+    <!-- username -->
+    <input type="text"  class="form-control mb-4" placeholder="tittle" name ="tittle">
+
+    <!-- Password -->
+    <textarea type="text"  class="form-control mb-4" placeholder="description" name="description">
+     </textarea>
+     
+    <div class="d-flex justify-content-around">
+    </div>
+    
+     <input type= "file" class="form-control" placeholder="upload image" name='image'>
+
+    
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit">Create project</button>
+</form>
+    </div>
+    <div class="col-md-6">
+        <form class="text-center border border-light p-5" action="/profiles" Method="post">
+
+    <p class="h4 mb-4">Create Profiles</p>
+
+
+    <input type="text"  class="form-control mb-4" placeholder="Name" name ="name">
+
+    
+    <input type="text"  class="form-control mb-4" placeholder="description" name ="desc">
+
+    <input type= "file" class="form-control" placeholder="upload image" name='image'>
+
+   
+    <button class="btn btn-info btn-block my-4  deep-orange darken-3" type="submit">Register</button>
+
+    
+
+</form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<!-- Default form login -->
+<!-- Footer -->
+<footer class="page-footer font-small special-color-dark pt-4">
+
+  <!-- Footer Elements -->
+  <div class="container">
+
+  
+      
+
+  </div>
+  <!-- Footer Elements -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/">JMA software</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+  <!-- /Start your project here-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/js/mdb.min.js"></script>
+</body> 
+
+</html>
