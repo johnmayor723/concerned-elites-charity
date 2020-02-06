@@ -4,6 +4,9 @@ const mongoose = require('mongoose')
 const path = require('path');
 const passport = require('passport')
 const LocalStrategy = require("passport-local")
+const multer = require('multer')
+//const cloudinary = require('cloudinary')
+//const cloudinaryStorage = require('multer-storage-cloudinary')
 const app = express()
 const User = require("./models/user")
 const Profile = require("./models/profile")
@@ -32,8 +35,30 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//multer configuration
+/*cloudinary.config({
+cloud_name: "demrz0ylb",
+api_key:  373235543956492,
+api_secret:"otw03ssnySjUoII7EEJtrbhePZE" 
+});
+const storage = cloudinaryStorage({
+cloudinary: cloudinary,
+folder: "demo",
+allowedFormats: ["jpg", "png"],
+transformation: [{ width: 500, height: 500, crop: "limit" }]
+});
+const parser = multer({ storage: storage });
+*/
 
+// SET STORAGE
+var storage = multer.diskStorage({
+  destination: './public/files',
+  filename: function(req, file, fn){
+    fn(null,  new Date().getTime().toString()+'-'+file.fieldname+path.extname(file.originalname));
+  }
+}); 
 
+var upload = multer({ storage: storage })
 //charity profilesschema
 
 /*var profileSchema = new mongoose.Schema({
@@ -151,10 +176,10 @@ app.get("/memberslists", function(req, res){
 })
 
 //create members profile
-app.post('/profiles', function(req, res){
+app.post('/profiles',upload.single('image'), function(req, res){
     var name          = req.body.name;
     var description   = req.body.desc
-    var image         = req.body.image
+    var image  = "files/"+req.file.filename;
     var newProfile = {
         name : name, 
         description : description, 
@@ -169,15 +194,13 @@ app.post('/profiles', function(req, res){
            console.log(newlyCreated)
         }
     });
-   
-    
 })
 
 //create projects in the database
-app.post('/createProject', function(req, res){
+app.post('/createProject',upload.single('image'), function(req, res){
     var title          = req.body.title
     var description   = req.body.desc
-    var image         = req.body.image
+    var image  = "files/"+req.file.filename;
     var newProject = {
         title : title, 
         description : description, 
@@ -202,5 +225,5 @@ app.use(function(req, res, next){
 });
 
 app.listen(process.env.PORT, function(){
-    console.log("server is listening")
+    console.log("server started running")
 })
