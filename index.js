@@ -5,8 +5,6 @@ const path = require('path');
 const passport = require('passport')
 const LocalStrategy = require("passport-local")
 const multer = require('multer')
-//const cloudinary = require('cloudinary')
-//const cloudinaryStorage = require('multer-storage-cloudinary')
 const app = express()
 const User = require("./models/user")
 const Profile = require("./models/profile")
@@ -35,21 +33,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//multer configuration
-/*cloudinary.config({
-cloud_name: "demrz0ylb",
-api_key:  373235543956492,
-api_secret:"otw03ssnySjUoII7EEJtrbhePZE" 
-});
-const storage = cloudinaryStorage({
-cloudinary: cloudinary,
-folder: "demo",
-allowedFormats: ["jpg", "png"],
-transformation: [{ width: 500, height: 500, crop: "limit" }]
-});
-const parser = multer({ storage: storage });
-*/
-
 // SET STORAGE
 var storage = multer.diskStorage({
   destination: './public/files',
@@ -59,22 +42,6 @@ var storage = multer.diskStorage({
 }); 
 
 var upload = multer({ storage: storage })
-//charity profilesschema
-
-/*var profileSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-})
-
-var Profiles = mongoose.model("Profiles", profileSchema)
-
-//user schema
-
-var userSchema = new mongoose.Schema({
-    username: String,
-    password:String
-})*/
 
 //main routes
 
@@ -148,7 +115,6 @@ app.get("/profiles",isLoggedIn , function(req, res) {
    
 })
 
-
 //get the project page
 app.get("/projectlists", function(req, res){
      Project.find({}, function(err, found){
@@ -218,6 +184,62 @@ app.post('/createProject',upload.single('image'), function(req, res){
    
     
 })
+
+// show profile
+app.get("/profile/profile.id", function(req, res){
+      
+})
+// edit profile
+
+app.put("/:id",isLoggedIn, function(req, res){
+    // find and update the correct campground
+    Profile.findByIdAndUpdate(req.params.id, req.body.profile, function(err, updatedCampground){
+       if(err){
+           res.redirect("/projects");
+       } else {
+           //redirect somewhere(show page)
+           res.redirect("/projects/" + req.params.id);
+       }
+    });
+});
+
+// delete profile
+app.delete("/:id",isLoggedIn, function(req, res){
+   Profile.findByIdAndRemove(req.params.id, function(err){
+      if(err){
+          res.redirect("/profiles");
+      } else {
+          res.redirect("/profiles");
+      }
+   });
+})
+
+//show project
+
+//edit project
+app.put("/:id",isLoggedIn, function(req, res){
+    // find and update the correct campground
+    Project.findByIdAndUpdate(req.params.id, req.body.project, function(err, updated){
+       if(err){
+           res.redirect("/campgrounds");
+       } else {
+           //redirect somewhere(show page)
+           res.redirect("/projects/" + req.params.id);
+       }
+    });
+});
+
+//delete project
+app.delete("/:id",isLoggedIn, function(req, res){
+   Project.findByIdAndRemove(req.params.id, function(err){
+      if(err){
+          res.redirect("/projects");
+      } else {
+          res.redirect("/projects");
+      }
+   });
+})
+
 
 app.use(function(req, res, next){
    res.locals.currentUser = req.user;
