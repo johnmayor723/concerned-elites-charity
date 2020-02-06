@@ -119,7 +119,35 @@ function isLoggedIn(req, res, next){
 
 //admin dashboard
 app.get("/profiles",isLoggedIn , function(req, res) {
-    res.render("profiles")
+   res.render('profiles')
+   
+})
+
+
+//get the project page
+app.get("/projectlists", function(req, res){
+     Project.find({}, function(err, found){
+        if(err){
+            console.log(err)
+            res.redirect("/home")
+        } else{
+           res.render("projects", {projects:found})
+           
+        }
+    })
+})
+
+//get memebers page
+app.get("/memberslists", function(req, res){
+     Profile.find({}, function(err, found){
+        if(err){
+            console.log(err)
+            res.redirect("/home")
+        } else{
+            res.render("members", {profiles:found})
+         
+        }
+    })
 })
 
 //create members profile
@@ -155,13 +183,13 @@ app.post('/createProject', function(req, res){
         description : description, 
         image : image
     }
-      Profile.create(newProject, function(err, newlyCreated){
+      Project.create(newProject, function(err, newlyCreated){
         if(err){
             console.log(err);
         } else {
             //redirect back to campgrounds page
             res.redirect("/profiles");
-           console.log(newlyCreated)
+           //console.log(newlyCreated)
         }
     });
    
