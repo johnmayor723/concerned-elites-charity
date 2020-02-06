@@ -101,10 +101,24 @@ app.post("/login", passport.authenticate("local",
     }), function(req, res){
 });
 
+// logout route
+app.get("/logout", function(req, res){
+   req.logout();
+   res.redirect("/profiles");
+});
+
+//middleware
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/home");
+}
+
 //admin routes
 
 //admin dashboard
-app.get("/profiles", function(req, res) {
+app.get("/profiles",isLoggedIn , function(req, res) {
     res.render("profiles")
 })
 
@@ -133,11 +147,11 @@ app.post('/profiles', function(req, res){
 
 //create projects in the database
 app.post('/createProject', function(req, res){
-    var name          = req.body.name;
+    var title          = req.body.title
     var description   = req.body.desc
     var image         = req.body.image
     var newProject = {
-        name : name, 
+        title : title, 
         description : description, 
         image : image
     }
@@ -153,6 +167,11 @@ app.post('/createProject', function(req, res){
    
     
 })
+
+app.use(function(req, res, next){
+   res.locals.currentUser = req.user;
+   next();
+});
 
 app.listen(process.env.PORT, function(){
     console.log("server is listening")
