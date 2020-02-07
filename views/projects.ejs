@@ -72,7 +72,7 @@
 					<div class="col-md-6 col-sm-6 text-left fh5co-link">
 						<a href="#">FAQ</a>
 						<a href="#">Forum</a>
-						<a href="#">Contact</a>
+						<a href="/contact">Contact</a>
 					</div>
 					<div class="col-md-6 col-sm-6 text-right fh5co-social">
 						<a href="#" class="grow"><i class="icon-facebook2"></i></a>
@@ -91,7 +91,7 @@
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li>
-								<a href="index.html">Home</a>
+								<a href="/home">Home</a>
 							</li>
 							<li>
 								<a href="#" class="fh5co-sub-ddown">Get Involved</a>
@@ -112,7 +112,11 @@
 								</ul>
 							</li>
 							<li><a href="about.html">About</a></li>
-							<li class="active"><a href="blog.html">Blog</a></li>
+								<% if(admin){ %>
+				                      
+				                        <li class="active"><a href="/logout">sign out</a></li>
+			                        <% }%>
+						
 							<li><a href="contact.html">Contact</a></li>
 						</ul>
 					</nav>
@@ -122,24 +126,37 @@
 		
 		
 
-		<div class="fh5co-hero">
+	<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
 			<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">
-				<div class="desc animate-box">
-					<h2>Our <strong>Projects</strong></h2>
+			
+					
+				<% if(admin){ %>
+				 	<div class="desc animate-box">
+				        <h2>Hello <strong>Admin</strong></h2>
+				     </div>   
+			      <% } else{ %>
+			      	<div class="desc animate-box">
+				      	<h2>Our <strong>Members</strong></h2>
+					     <span><a class="btn btn-primary btn-lg" href="#">Donate Now</a></span>   
+					 </div>    
+			      <% }%>
+					
 				
-					<span><a class="btn btn-primary btn-lg" href="#">Donate Now</a></span>
-				</div>
 			</div>
 
 		</div>
 		
 		<div id="fh5co-blog-section" class="fh5co-section-gray">
 			<div class="container">
-				<div class="row">
+					<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Read. Learn. Share</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
+ 				  <% if(admin){ %>
+					  <h3>Edit or Delete  Projects here</h3>
+					   <% } else{ %>
+						<h3>Learn More About Us</h3>
+						<p>Here Are Our Esteemed Members.</p>
+					  <% }%>
 					</div>
 				</div>
 			</div>
@@ -155,6 +172,12 @@
 									<span class="posted_by"></span>
 									<span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span>
 									<p><%= project.description%></p>
+									<% if(admin){ %>
+				                        <a class="btn btn-xs btn-warning" href="/projects/<%= project._id %>/edit" method="get">Edit</a>
+				                        <form id="delete-form" action="/projects/<%= project._id %>?_method=DELETE" method="POST">
+				                            <button class="btn btn-xs btn-danger">Delete</button>
+				                        </form>
+			                        <% }%>
 									<p><a href="#">Learn More...</a></p>
 								</div>
 							</div> 

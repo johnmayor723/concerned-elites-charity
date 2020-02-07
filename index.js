@@ -5,10 +5,14 @@ const path = require('path');
 const passport = require('passport')
 const LocalStrategy = require("passport-local")
 const multer = require('multer')
+const methodOverride = require("method-override")
 const app = express()
 const User = require("./models/user")
 const Profile = require("./models/profile")
 const Project = require("./models/project")
+const userRoutes = require('./routes/user')
+const projectRoutes = require('./routes/project')
+const profileRoutes = require('./routes/profile')
 
 var DbUrl = "mongodb://charity:sito123@ds231090.mlab.com:31090/tekdealzdb"
 mongoose.connect(DbUrl)
@@ -20,6 +24,7 @@ app.set("view engine", "ejs")
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('public'))
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride("_method"));
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
@@ -122,8 +127,10 @@ app.get("/projectlists", function(req, res){
             console.log(err)
             res.redirect("/home")
         } else{
-           res.render("projects", {projects:found})
-           
+             if(req.isAuthenticated){
+             var admin = req.user
+            res.render("projects", {projects:found, admin : admin})
+            } 
         }
     })
 })
@@ -131,13 +138,17 @@ app.get("/projectlists", function(req, res){
 //get memebers page
 app.get("/memberslists", function(req, res){
      Profile.find({}, function(err, found){
+        
         if(err){
             console.log(err)
             res.redirect("/home")
         } else{
-            res.render("members", {profiles:found})
+            if(req.isAuthenticated){
+             var admin = req.user
+            res.render("members", {profiles:found, admin : admin})
+            } 
          
-        }
+        } 
     })
 })
 
@@ -185,26 +196,29 @@ app.post('/createProject',upload.single('image'), function(req, res){
     
 })
 
-// show profile
-app.get("/profile/profile.id", function(req, res){
-      
+//get edit profile form
+app.get('/profiles/:profile.id/edit', function(req, res) {
+      Profile.findById(req.params.id, function(err, found){
+        res.render("editprofile", {profile: found});
+    });
 })
-// edit profile
+      
 
-app.put("/:id",isLoggedIn, function(req, res){
+// edit profile
+app.put("profiles/:id",isLoggedIn, function(req, res){
     // find and update the correct campground
-    Profile.findByIdAndUpdate(req.params.id, req.body.profile, function(err, updatedCampground){
+    Profile.findByIdAndUpdate(req.params.id, req.body.profile, function(err, updated){
        if(err){
-           res.redirect("/projects");
+           res.redirect("/profiles");
        } else {
            //redirect somewhere(show page)
-           res.redirect("/projects/" + req.params.id);
+           res.redirect("/profiles");
        }
     });
 });
 
 // delete profile
-app.delete("/:id",isLoggedIn, function(req, res){
+app.delete("/profiles/:id",isLoggedIn, function(req, res){
    Profile.findByIdAndRemove(req.params.id, function(err){
       if(err){
           res.redirect("/profiles");
@@ -214,17 +228,21 @@ app.delete("/:id",isLoggedIn, function(req, res){
    });
 })
 
-//show project
-
+//get edit project form
+app.get('/projects/:id/edit',isLoggedIn, function(req, res) {
+      Project.findById(req.params.id, function(err, found){
+        res.render("editproject", {project: found});
+    });
+})
 //edit project
-app.put("/:id",isLoggedIn, function(req, res){
+app.put("/project/:id",isLoggedIn, function(req, res){
     // find and update the correct campground
     Project.findByIdAndUpdate(req.params.id, req.body.project, function(err, updated){
        if(err){
-           res.redirect("/campgrounds");
+           res.redirect("/profiles");
        } else {
            //redirect somewhere(show page)
-           res.redirect("/projects/" + req.params.id);
+           res.redirect("/projects");
        }
     });
 });
