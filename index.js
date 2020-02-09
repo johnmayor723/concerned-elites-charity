@@ -58,7 +58,18 @@ app.get("/home", function(req, res) {
 })
 
 app.get('/about', function(req, res){
-    res.render('about')
+    Profile.find({}, function(err, profiles){
+       
+        if(err){
+            console.log(err)
+        }else{
+             if(req.isAuthenticated){
+             var admin = req.user
+            res.render('about', {profiles:profiles, admin:admin})
+            } 
+        }
+    })
+   
 })
 
 app.get('/contact', function(req, res){
@@ -154,13 +165,17 @@ app.get("/memberslists", function(req, res){
 
 //create members profile
 app.post('/profiles',upload.single('image'), function(req, res){
-    var name          = req.body.name;
+    var firstname        = req.body.firstname;
+    var surname        = req.body.surname;
     var description   = req.body.desc
+    var state = req.body.state
+    var DOB = req.body.DOB
+    var gender= req.body.gender
+    var location = req.body.address
+    var ocupation = req.body.ocupation
     var image  = "files/"+req.file.filename;
     var newProfile = {
-        name : name, 
-        description : description, 
-        image : image
+       firstname, surname, description, state, DOB, gender, location, image
     }
       Profile.create(newProfile, function(err, newlyCreated){
         if(err){
@@ -197,7 +212,7 @@ app.post('/createProject',upload.single('image'), function(req, res){
 })
 
 //get edit profile form
-app.get('/profiles/:profile.id/edit', function(req, res) {
+app.get('/profiles/:id/edit', function(req, res) {
       Profile.findById(req.params.id, function(err, found){
         res.render("editprofile", {profile: found});
     });
@@ -205,9 +220,17 @@ app.get('/profiles/:profile.id/edit', function(req, res) {
       
 
 // edit profile
-app.put("profiles/:id",isLoggedIn, function(req, res){
-    // find and update the correct campground
-    Profile.findByIdAndUpdate(req.params.id, req.body.profile, function(err, updated){
+app.put("/profiles/:id",isLoggedIn, upload.single('image'), function(req, res){
+    // find and update the correct campground var title          = req.body.title
+    var description   = req.body.description
+    var title = req.body.title
+    var image  = "files/"+req.file.filename;
+    var newProfile = {
+        title : title, 
+        description : description, 
+        image : image
+    }
+    Profile.findByIdAndUpdate(req.params.id, newProfile, function(err, updated){
        if(err){
            res.redirect("/profiles");
        } else {
@@ -235,20 +258,33 @@ app.get('/projects/:id/edit',isLoggedIn, function(req, res) {
     });
 })
 //edit project
-app.put("/project/:id",isLoggedIn, function(req, res){
+app.put("/projects/:id",isLoggedIn, upload.single('image'), function(req, res){
     // find and update the correct campground
-    Project.findByIdAndUpdate(req.params.id, req.body.project, function(err, updated){
+     var description   = req.body.description
+    var title = req.body.title
+    var image  = "files/"+req.file.filename;
+    var newProject = {
+        title : title, 
+        description : description, 
+        image : image
+    }
+    Project.findByIdAndUpdate(req.params.id, newProject, function(err, updated){
        if(err){
-           res.redirect("/profiles");
+          // res.redirect("/profiles");
+           console.log(err)
        } else {
            //redirect somewhere(show page)
-           res.redirect("/projects");
+           //res.redirect("/profiles");
+           console.log(updated)
+           console.log(newProject)
+           res.redirect("/profiles");
+       
        }
     });
 });
 
 //delete project
-app.delete("/:id",isLoggedIn, function(req, res){
+app.delete("/projects/:id",isLoggedIn, function(req, res){
    Project.findByIdAndRemove(req.params.id, function(err){
       if(err){
           res.redirect("/projects");
@@ -264,6 +300,37 @@ app.use(function(req, res, next){
    next();
 });
 
-app.listen(process.env.PORT, function(){
+
+const server =app.listen(process.env.PORT, function(){
     console.log("server started running")
+    console.log(process.env.PORT)
+})
+app.get("/chat", function(req, res){
+    res.render('chat')
+})
+
+const io = require("socket.io")(server)
+
+//listen on every connection
+io.on('connection', (socket) => {
+	console.log('New user connected')
+
+	//default username
+	socket.username = "Anonymous"
+
+    //listen on change_username
+    socket.on('change_username', (data) => {
+        socket.username = data.username
+    })
+
+    //listen on new_message
+    socket.on('new_message', (data) => {
+        //broadcast the new message
+        io.sockets.emit('new_message', {message : data.message, username : socket.username});
+    })
+
+    //listen on typing
+    socket.on('typing', (data) => {
+    	socket.broadcast.emit('typing', {username : socket.username})
+    })
 })

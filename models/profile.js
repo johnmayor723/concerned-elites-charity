@@ -2,9 +2,15 @@ var mongoose = require("mongoose");
 //var passportLocalMongoose = require("passport-local-mongoose");
 
 var profileSchema = new mongoose.Schema({
-    name: String,
+    firstname: String,
+    surname: String,
     image: String,
-    description :String
+    description :String,
+    state: String,
+    ocupation: String,
+    gender:String,
+    DOB : String,
+    location: String
 });
 
 //UserSchema.plugin(passportLocalMongoose)
