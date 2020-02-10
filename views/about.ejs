@@ -59,7 +59,7 @@
 					<div class="col-md-6 col-sm-6 text-left fh5co-link">
 						<a href="#">FAQ</a>
 						<a href="#">Forum</a>
-						<a href="#">Contact</a>
+						<a href="/contact">Contact</a>
 					</div>
 					<div class="col-md-6 col-sm-6 text-right fh5co-social">
 						<a href="#" class="grow"><i class="icon-facebook2"></i></a>
@@ -99,7 +99,7 @@
 								</ul>
 							</li>
 							<li class="active"><a href="/about">About</a></li>
-							<li><a href="blog.html">Blog</a></li>
+							<li><a href="#">Blog</a></li>
 							<li><a href="/contact" method="get">Contact</a></li>
 						</ul>
 					</nav>
@@ -168,68 +168,8 @@
 		</div>
 
 		
-		<div id="fh5co-portfolio">
-			<div class="container">
-
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 text-center heading-section animate-box">
-						<h3>Our Gallery</h3>
-						<p></p>
-					</div>
-				</div>
-
-				
-				<div class="row row-bottom-padded-md">
-					<div class="col-md-12">
-						<ul id="fh5co-portfolio-list">
-
-							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/men-and-women-wit-kids-1102570.jpg); ">
-								<a href="#" class="color-3">
-									<div class="case-studies-summary">
-										<span>Give Love</span>
-										<h2>Donation is caring</h2>
-									</div>
-								</a>
-							</li>
-						
-							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/stock-photo-clean-fresh-water-scarcity-symbol-black-girl-drinking-from-tap-young-african-girl-drinking-clean-276445451.jpg); ">
-								<a href="#" class="color-4">
-									<div class="case-studies-summary">
-										<span>Give Love</span>
-										<h2>Donation is caring</h2>
-									</div>
-								</a>
-							</li>
-
-							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/cover_bg_1.jpg); "> 
-								<a href="#" class="color-5">
-									<div class="case-studies-summary">
-										<span>Give Love</span>
-										<h2>Donation is caring</h2>
-									</div>
-								</a>
-							</li>
-							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/cover_bg_3.jpg); ">
-								<a href="#" class="color-6">
-									<div class="case-studies-summary">
-										<span>Give Love</span>
-										<h2>Donation is caring</h2>
-									</div>
-								</a>
-							</li>
-						</ul>		
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4 text-center animate-box">
-						<a href="#" class="btn btn-primary btn-lg">See Gallery</a>
-					</div>
-				</div>
-
-				
-			</div>
-		</div>
+	
+			
 		
 
 		
@@ -244,29 +184,23 @@
 			</div>
 			<div class="container">
 				<div class='row'>
-				 <% profiles.forEach(function(profile){ %>
-
+				  <% profiles.forEach(function(profile){ %>
 					<div class="col-md-3">
-					 
-						<div class="fh5co-team text-center animate-box">
+						<div class="fh5co-testimonial text-center animate-box">
 							<figure>
-								<img src="<%=profile.image %>" alt="user">
+								<img src="<%=profile.image%>" alt="user">
 							</figure>
-							<div>
-								<h3><%=profile.firstname%> <%=profile.surnname%></h3>
-								<span><p><%=profile.description%></p></span>
-								<a href="/profiles/:profile._id"><strong>More about <%=profile.firstname%></strong></p></a>
-							</div>
-							<p class="fh5co-social-icons">
-								<a href="#"><i class="icon-twitter2"></i></a>
-								<a href="#"><i class="icon-linkedin2"></i></a>
-								<a href="#"><i class="icon-facebook3"></i></a>
-							</p>
+							<blockquote>
+								<p><%=profile.firstname%><span> <%=profile.surname%></span>
+								<br>located at <%=profile.location %>
+								<br>from-<%=profile.state%>
+								<br>born -<%=profile.DOB%>
+								<br>ocupation-<%=profile.ocupation%></p>
+							</blockquote>
 						</div>
 					</div>
-					 <% }); %>
-				
-				</div>
+			   <% }); %>
+			 </div>
 			</div>
 		</div>
 		<!-- fh5co-content-section -->
@@ -284,7 +218,7 @@
 								<a href="#"><i class="icon-dribbble2"></i></a>
 								<a href="#"><i class="icon-youtube"></i></a>
 							</p>
-							<p>Copyright 2016 Free Html5 <a href="#">Charity</a>. All Rights Reserved. <br>Made with <i class="icon-heart3"></i> by <a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> / Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
+							<p>Copyright 2020 www.jmasoftware.com.ng <a href="/home">Concerned elites charity foundtion</a>. All Rights Reserved</p>
 						</div>
 					</div>
 				</div>

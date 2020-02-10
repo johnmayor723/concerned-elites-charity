@@ -175,7 +175,7 @@ app.post('/profiles',upload.single('image'), function(req, res){
     var ocupation = req.body.ocupation
     var image  = "files/"+req.file.filename;
     var newProfile = {
-       firstname, surname, description, state, DOB, gender, location, image
+       firstname, surname, description, state, DOB, gender, location, image, ocupation
     }
       Profile.create(newProfile, function(err, newlyCreated){
         if(err){
@@ -217,20 +217,36 @@ app.get('/profiles/:id/edit', function(req, res) {
         res.render("editprofile", {profile: found});
     });
 })
-      
+//show profile
+app.get('/profiles/:id', function(req, res){
+    Profile.findById(req.params.id, function(err, found){
+        if(err){
+            res.redirect('/about')
+            console.log(err)
+        } else{
+            console.log(found)
+            res.render('memberShow', {profile:found})
+        }
+    })
+})      
 
 // edit profile
 app.put("/profiles/:id",isLoggedIn, upload.single('image'), function(req, res){
-    // find and update the correct campground var title          = req.body.title
-    var description   = req.body.description
-    var title = req.body.title
-    var image  = "files/"+req.file.filename;
+    
+   if(req.file){
+        var image=  "files/"+req.file.filename;
+        var firstname        = req.body.firstname;
+    var surname        = req.body.surname;
+    var description   = req.body.desc
+    var state = req.body.state
+    var DOB = req.body.DOB
+    var gender= req.body.gender
+    var location = req.body.address
+    var ocupation = req.body.ocupation
     var newProfile = {
-        title : title, 
-        description : description, 
-        image : image
+       firstname, surname, description, state, DOB, gender, location, image, ocupation
     }
-    Profile.findByIdAndUpdate(req.params.id, newProfile, function(err, updated){
+     Profile.findByIdAndUpdate(req.params.id, newProfile, function(err, updated){
        if(err){
            res.redirect("/profiles");
        } else {
@@ -238,6 +254,35 @@ app.put("/profiles/:id",isLoggedIn, upload.single('image'), function(req, res){
            res.redirect("/profiles");
        }
     });
+   } else {
+       Profile.findById(req.params.id, function(err, found){
+           var image = found.image
+           var firstname = req.body.firstname || found.firstname
+           var surname = req.body.surname || found.surname
+            var description   = req.body.desc || found.description
+            var state = req.body.state || found.state
+            var DOB = req.body.DOB || found.DOB
+            var gender= req.body.gender || found.gender
+            var location = req.body.address || found.location
+            var ocupation = req.body.ocupation || found.ocupation
+            var newProfile = {
+               firstname, surname, description, state, DOB, gender, location, image, ocupation
+    }
+           Profile.findByIdAndUpdate(req.params.id, newProfile, function(err, updated){
+       if(err){
+           res.redirect("/profiles");
+       } else {
+           //redirect somewhere(show page)
+           res.redirect("/profiles");
+       }
+    });
+       })
+   }
+    
+    //var image = getImage()
+    //var image  = "files/"+req.file.filename;
+    
+   
 });
 
 // delete profile
