@@ -190,9 +190,10 @@ app.post('/profiles',upload.single('image'), function(req, res){
 
 //create projects in the database
 app.post('/createProject',upload.single('image'), function(req, res){
-    var title          = req.body.title
+    if(req.file){
+         var title = req.body.title
     var description   = req.body.desc
-    var image  = "files/"+req.file.filename;
+    var image  =  "files/"+req.file.filename; 
     var newProject = {
         title : title, 
         description : description, 
@@ -201,14 +202,37 @@ app.post('/createProject',upload.single('image'), function(req, res){
       Project.create(newProject, function(err, newlyCreated){
         if(err){
             console.log(err);
+            res.send(err)
         } else {
             //redirect back to campgrounds page
             res.redirect("/profiles");
            //console.log(newlyCreated)
-        }
+        } 
     });
    
     
+    } else{
+         var title = req.body.title
+    var description   = req.body.desc
+    var image  =  "images/cover_bg_1.jpg"
+    var newProject = {
+        title : title, 
+        description : description, 
+        image : image
+    }
+      Project.create(newProject, function(err, newlyCreated){
+        if(err){
+            console.log(err);
+            res.send(err)
+        } else {
+            //redirect back to campgrounds page
+            res.redirect("/profiles");
+           //console.log(newlyCreated)
+        } 
+    });
+   
+    }
+   
 })
 
 //get edit profile form
