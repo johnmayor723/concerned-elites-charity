@@ -369,10 +369,10 @@ app.use(function(req, res, next){
    next();
 });
 
-
-const server =app.listen(process.env.PORT, function(){
+const port = process.env.PORT
+const server =app.listen(port, function(){
     console.log("server started running")
-    console.log(process.env.PORT)
+    console.log(port)
 })
 app.get("/chat", function(req, res){
     res.render('chat')
