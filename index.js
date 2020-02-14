@@ -370,7 +370,7 @@ app.use(function(req, res, next){
 });
 
 
-const server =app.listen(47884, function(){
+const server =app.listen(80, function(){
     console.log("server started running")
     console.log(process.env.PORT)
 })
