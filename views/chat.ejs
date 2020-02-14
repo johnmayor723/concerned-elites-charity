@@ -36,7 +36,7 @@
     <script>
       $(function(){
    	//make connection
-	var socket = io.connect('http://localhost:8080')
+	var socket = io.connect('http://localhost:3000')
 
 	//buttons and inputs
 	var message = $("#message")
@@ -49,7 +49,7 @@
 	//Emit message
 	send_message.click(function(){
 		console.log('clicked')
-		alert('clicked')
+	
 		socket.emit('new_message', {message : message.val()})
 	})
 
