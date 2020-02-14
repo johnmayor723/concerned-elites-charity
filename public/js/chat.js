@@ -1,17 +1,17 @@
 $(function(){
    	//make connection and open form
-   	function openForm() {
+   	//function openForm() {
    		var socket = io.connect('http://localhost:3000')
-		document.getElementById("myForm").style.display = "block";
-    }
+		//document.getElementById("myForm").style.display = "block";
+   // }
     
-    function closeForm() {
-	  document.getElementById("myForm").style.display = "none";
-    }
+   // function closeForm() {
+	//  document.getElementById("myForm").style.display = "none";
+   // }
 	
 
 	//buttons and inputs
-	var chatstart = $("#chatstart")
+//	var chatstart = $("#log")
 	var message = $("#message")
 	var username = $("#username")
 	var send_message = $("#send_message")

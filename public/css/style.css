@@ -11,18 +11,16 @@
 *	Edit this section
 *
 * ======================================================= */
-#myForm{
-  display: none;
-}
+
     #teco{
         color:indigo;
         font-size:bold;
         font-style:italic;
     }
     #log{
-         cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
+        
+  opacity: 1;
+  position: fixed ;
   bottom: 23px;
   right: 28px;
   width: 140px;
