@@ -53,7 +53,8 @@
 	<script src="/js/respond.min.js"></script>
 	<![endif]-->
    
-    <style>
+    <style> 
+
     #melog {
     	height:70px;
     	width:100px;
@@ -573,7 +574,30 @@
 			</div>
 		</div>
 		<!-- fh5co-blog-section -->
-		
+	<div class="chat-popup" id="myForm">
+	    <header>
+      <h1>Elites Chat Room</h1>
+    </header>
+
+    <section id="chatroombox">
+      <div id="change_username">
+        
+	<input id="username" type="text" />
+	<button id="send_username" type="button">Change username</button>
+      </div>
+    </section>
+
+    <section id="chatroom">
+      <section id="feedback"></section>
+    </section>
+
+    
+
+    <section id="input_zone"> 
+      <input id="message" class="vertical-align" type="text" />
+      <button id="sendmessage" class="vertical-align" type="button">Send</button>
+    </section>
+	</div>	
 		
 		
 <div id="myModal" class="modal">
@@ -613,7 +637,15 @@
    
 
 </div>
-        
+           <div id='chatlogo' >
+               
+				 <a  href='/chat'>
+				     <div id="log">
+				          <span id="teco">Live Chat</span>
+				     <br><img  src="images/chatlogo.png">
+				     </div>
+				</a>
+			</div>
 		
 		
 		
@@ -631,6 +663,7 @@
 							</p>
 							<p>Copyright 2020 JMA Software <a href="/home">Concerned Elite Foundation</a></p>
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -666,7 +699,9 @@
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
       <!-- Compiled and minified JavaScript -->
-  
+  <!--chat js-->
+   <script src="js/chat.js"></script>
+   <!--chat js-->
  
   <script>
    // Get the modal

@@ -1,19 +1,33 @@
 $(function(){
-   	//make connection
-	var socket = io.connect('http://localhost:3000')
+   	//make connection and open form
+   	function openForm() {
+   		var socket = io.connect('http://localhost:3000')
+		document.getElementById("myForm").style.display = "block";
+    }
+    
+    function closeForm() {
+	  document.getElementById("myForm").style.display = "none";
+    }
+	
 
 	//buttons and inputs
+	var chatstart = $("#chatstart")
 	var message = $("#message")
 	var username = $("#username")
 	var send_message = $("#send_message")
 	var send_username = $("#send_username")
 	var chatroom = $("#chatroom")
 	var feedback = $("#feedback")
+	
+	//open chat form
+	chatstart.click(function(){
+		openForm()
+	})
 
 	//Emit message
 	send_message.click(function(){
 		console.log('clicked')
-		alert('clicked')
+		//alert('clicked')
 		socket.emit('new_message', {message : message.val()})
 	})
 
