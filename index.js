@@ -369,8 +369,8 @@ app.use(function(req, res, next){
    next();
 });
 
-const port =3000
-const server =app.listen(port, function(){
+
+const server =app.listen(process.env.PORT, function(){
     console.log("server started running")
     console.log(process.env.PORT)
 })
