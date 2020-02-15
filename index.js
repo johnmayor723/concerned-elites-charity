@@ -51,7 +51,10 @@ var upload = multer({ storage: storage })
 //main routes
 
 app.get("/", function(req, res){
-    res.render("index")
+    Project.find({}, function(err, projects){
+        res.render("index",{projects:projects} )
+    })
+    
 })
 app.get("/home", function(req, res) {
     res.redirect("/")
