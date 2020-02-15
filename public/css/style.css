@@ -18,7 +18,7 @@
         font-style:italic;
     }
     #log{
-        
+      z-index:1;  
   opacity: 1;
   position: fixed ;
   bottom: 23px;
