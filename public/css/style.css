@@ -11,7 +11,10 @@
 *	Edit this section
 *
 * ======================================================= */
-
+ #melog {
+    	height:40px;
+    	width:50px;
+    }
     #teco{
         color:indigo;
         font-size:bold;

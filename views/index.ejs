@@ -55,10 +55,7 @@
    
     <style> 
    
-    #melog {
-    	height:100px;
-    	width:100px;
-    }
+   
     
     </style>
 	</head>
@@ -98,7 +95,7 @@ s0.parentNode.insertBefore(s1,s0);
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.html">LOGO</a></h1>
+					<h1 id="fh5co-logo"><a href="index.html"><img id='melog' src="images/milog.png"></a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
@@ -118,7 +115,7 @@ s0.parentNode.insertBefore(s1,s0);
 							<li>
 								<a href="#" class="fh5co-sub-ddown">Projects</a>
 								 <ul class="fh5co-sub-menu">
-								 	<li><a href="#">Water World</a></li>
+								 	<li><a href="/projectlists">Our Projects</a></li>
 								 	<li><a href="#">Cloth Giving</a></li>
 								 	<li><a href="#">Medical Mission</a></li>
 								</ul>
@@ -432,54 +429,21 @@ s0.parentNode.insertBefore(s1,s0);
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
 						<h3>Our Projects. Support Us</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
+					
 					</div>
 				</div>
 			</div>
 			<div class="container">
 				<div class="row text-center">
+				  <% projects.forEach(function(project){ %>
 					<div class="col-md-4 col-sm-4">
 						<div class="services animate-box">
 							<span><i class="icon-heart"></i></span>
-							<h3>Water Project In Kenya</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<h3><%=project.title%></h3>
+							<p><%=project.description%>.</p>
 						</div>
 					</div>
-					<div class="col-md-4 col-sm-4">
-						<div class="services animate-box">
-							<span><i class="icon-heart"></i></span>
-							<h3>Shelter Giving</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-4">
-						<div class="services animate-box">
-							<span><i class="icon-heart"></i></span>
-							<h3>Shelter Giving</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-4">
-						<div class="services animate-box">
-							<span><i class="icon-heart"></i></span>
-							<h3>Water Project In Kenya</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-4">
-						<div class="services animate-box">
-							<span><i class="icon-heart"></i></span>
-							<h3>Water Project In Kenya</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-4">
-						<div class="services animate-box">
-							<span><i class="icon-heart"></i></span>
-							<h3>Midical Mission</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						</div>
-					</div>
+					<%})%>
 				</div>
 			</div>
 		</div>
