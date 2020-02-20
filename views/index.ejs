@@ -56,10 +56,13 @@
     <style> 
     #imgi {
     	height:240px;
-    	width:450px:
+    	width:280px:
     }
    
-    
+   #imap{
+   height:260px;
+   width:320px
+   }
     </style>
 	</head>
 	<!--Start of Tawk.to Script-->
@@ -508,9 +511,9 @@ s0.parentNode.insertBefore(s1,s0);
 			<div class="container">
 				<div class="row text-center">
 				  <% photos.forEach(function(project){ %>
-					<div class="col-md-4 col-sm-4">
+					<div class="col-md-4 col-sm-4" >
 						<div class="services animate-box">
-							<img class='img-responsive' src='<%=project.image%>' >
+							<img class='img-responsive' id="imap" src='<%=project.image%>' >
 							<h3><%=project.title%></h3>
 							<p><%=project.description%>.</p>
 						</div>
