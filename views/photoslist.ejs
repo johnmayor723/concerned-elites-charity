@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -13,7 +12,20 @@
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FREEHTML5.CO" />
 
- 
+  <!-- 
+	//////////////////////////////////////////////////////
+
+	FREE HTML5 TEMPLATE 
+	DESIGNED & DEVELOPED by FREEHTML5.CO
+		
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 		https://www.facebook.com/fh5co
+
+	//////////////////////////////////////////////////////
+	 -->
+
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
@@ -86,145 +98,120 @@ s0.parentNode.insertBefore(s1,s0);
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="/home"><img id='melog' src="images/milog.png"></a></h1>
+					<h1 id="fh5co-logo"><a href="index.html"><img id='melog' src="images/milog.png"></a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li>
-								<a href="/" method='get'>Home</a>
+								<a href="/home">Home</a>
 							</li>
 							<li>
 								<a href="#" class="fh5co-sub-ddown">Get Involved</a>
 								<ul class="fh5co-sub-menu">
 									<li><a href="#">Donate</a></li>
-									
+									<li><a href="#">Fundraise</a></li>
+									<li><a href="#">Campaign</a></li>
+									<li><a href="#">Philantrophy</a></li>
 									<li><a href="#">Volunteer</a></li>
 								</ul>
 							</li>
 							<li>
 								<a href="#" class="fh5co-sub-ddown">Projects</a>
 								 <ul class="fh5co-sub-menu">
-								 	<li><a href="/projectlists">Our Projects</a></li>
-								 	
+								 	<li><a href="#">Water World</a></li>
+								 	<li><a href="#">Cloth Giving</a></li>
+								 	<li><a href="#">Medical Mission</a></li>
 								</ul>
 							</li>
-							<li class="active"><a href="/about">About</a></li>
+							<li><a href="about.html">About</a></li>
+								<% if(admin){ %>
+				                      
+				                        <li class="active"><a href="/logout">sign out</a></li>
+			                        <% }%>
 						
-							<li><a href="/contact" method="get">Contact</a></li>
+							<li><a href="contact.html">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
 			</div>
 		</header>
-		 
 		
-		<div class="fh5co-hero">
+		
+
+	<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
 			<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(images/boy-playing-in-the-river-3287914.jpg);">
-				<div class="desc animate-box">
-					<h2>We Are <strong>Non-profit</strong></h2>
-					<span><a class="btn btn-primary btn-lg" id="myBtm1" href="#">Donate Now</a></span>
-				</div>
-			</div>
-
-		</div>
-		
-		<div id="fh5co-feature-product" class="fh5co-section-gray">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center heading-section">
-						<h3>How we started.</h3>
-						<p>A Group Of Caring And Commpassinate Hearts Coming together</p>
-					</div>
-				</div>
-
-				<div class="row row-bottom-padded-md">
-					<div class="col-md-12 text-center animate-box">
-						<p><img src="images/boy-wearing-yellow-crew-neck-shirt-and-black-short-3207532.jpg" class="img-responsive"></p>
-					</div>
-					<div class="col-md-6 text-center animate-box">
-						<p><img src="images/boy-playing-in-the-river-3287914.jpg" alt="boy paying in river" class="img-responsive"></p>
-					</div>
-					<div class="col-md-6 text-center animate-box">
-						<p><img src="images/boy-wearing-yellow-crew-neck-shirt-and-black-short-3207532.jpg" alt="boy image" class="img-responsive"></p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4">
-						<div class="feature-text">
-							<h3>Love</h3>
-							<p>“Service to others is the rent you pay for your room here on earth.”</p>
-                              <p>―Mohammed Ali</p>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="feature-text">
-							<h3>Compassion</h3>
-							<p>“We make a living by what we get, but we make a life by what we give.”</p>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="feature-text">
-							<h3>Charity</h3>
-							<p>“If there be any truer measure of a man than by what he does, it must be by what he gives.”</p>
-							<p>―Robert South</p>
-						</div>
-					</div>
-				</div>
-
+			
+					
+				<% if(admin){ %>
+				 	<div class="desc animate-box">
+				        <h2>Hello <strong>Admin</strong></h2>
+				     </div>   
+			      <% } else{ %>
+			      	<div class="desc animate-box">
+				      	<h2>Our <strong>Members</strong></h2>
+					     <span><a class="btn btn-primary btn-lg" href="#">Donate Now</a></span>   
+					 </div>    
+			      <% }%>
+					
 				
 			</div>
+
 		</div>
-
 		
-	
-			
-		
-
-		
-		<div id="fh5co-content-section" class="fh5co-section-gray">
+		<div id="fh5co-blog-section" class="fh5co-section-gray">
 			<div class="container">
-				<div class="row">
+					<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Our Members</h3>
-						<p>Learn More About Our Esteemed Members Below.</p>
+ 				  <% if(admin){ %>
+					  <h3>Edit or Delete  Projects here</h3>
+					   <% } else{ %>
+						<h3>Gallery</h3>
+				
+					  <% }%>
 					</div>
 				</div>
 			</div>
+			
+			
 			<div class="container">
-				<div class='row'>
-				  <% profiles.forEach(function(profile){ %>
-					<div class="col-md-4">
-						<div class="fh5co-testimonial text-center animate-box">
-							<figure>
-								<img src="<%=profile.image%>" alt="user">
-							</figure>
-							<blockquote>
-								<p><%=profile.firstname%><span> <%=profile.surname%></span>
-								<br>located at <%=profile.location %>
-								<br>from-<%=profile.state%>
-								<br>born -<%=profile.DOB%>
-								<br>ocupation-<%=profile.ocupation%></p>
-							</blockquote>
+				<div class="row row-bottom-padded-md">
+				  <% photos.forEach(function(project){ %>
+					<div class="col-lg-4 col-md-4 col-sm-6">
+						<div class="fh5co-blog animate-box">
+							<a href="#"><img class="img-responsive" src="<%= project.image %>">></a>
+							<div class="blog-text">
+								<div class="prod-title">
+									<h3><a href=""#><%= project.title %></a></h3>
+									<span class="posted_by"></span>
+									<span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span>
+									<p><%= project.description%></p>
+									<% if(admin){ %>
+				                        <a class="btn btn-xs btn-warning" href="/projects/<%= project._id %>/edit" method="get">Edit</a>
+				                        <form id="delete-form" action="/projects/<%= project._id %>?_method=DELETE" method="POST">
+				                            <button class="btn btn-xs btn-danger">Delete</button>
+				                        </form>
+			                        <% }%>
+									<p><a href="#">Learn More...</a></p>
+								</div>
+							</div> 
 						</div>
 					</div>
-			   <% }); %>
-			 </div>
+				  <% }); %>
+					
+					
+					
+
+				<div class="row">
+					<div class="col-md-4 col-md-offset-4 text-center animate-box">
+						<a href="#" class="btn btn-primary btn-lg">Learn More</a>
+					</div>
+				</div>
+
 			</div>
 		</div>
-		<!-- fh5co-content-section -->
-<div id="myMedal1" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content">
-  	<span class="close" id="spa">&times;</span>
-   <h2> Partner with us today </h2>
-   <strong>
-   	   <h3>Donate For The Poor Children of our Communities</h3>
-   <p>Pay to our bank account: The Concerned Elites Charity Foundations.</p>
-   <P>Polaris Bank Account number:4091258606</P>
-  </div>
-   </strong>
-</div>
+		<!-- fh5co-blog-section -->
+
 		
 		<footer>
 			<div id="footer">
@@ -238,13 +225,24 @@ s0.parentNode.insertBefore(s1,s0);
 								<a href="#"><i class="icon-dribbble2"></i></a>
 								<a href="#"><i class="icon-youtube"></i></a>
 							</p>
-							<p>Copyright 2020 www.jmasoftware.com.ng <a href="/home">Concerned elites charity foundtion</a>. All Rights Reserved</p>
+							<p>Copyright 2020 JMA software <a href="#">Concerned Elites charity foundation</a>. All Rights Reserved.</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</footer>
-	
+	 <div id="myMedal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+  	<span class="close" id="spa">&times;</span>
+   <h2> Partner with us today </h2>
+   <strong>
+   	   <h3>Donate For The Poor Children of our Communities</h3>
+   <p>Pay to our bank account: The Concerned Elites Charity Foundations.</p>
+   <P>Polaris Bank Account number:4091258606</P>
+  </div>
+   </strong>
+</div>
 
 	</div>
 	<!-- END fh5co-page -->
@@ -272,57 +270,7 @@ s0.parentNode.insertBefore(s1,s0);
 	
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
-<script>
-   // Get the modal
-var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-  var medal1 = document.getElementById("myMedal1");
-
-// Get the button that opens the modal
-var btm = document.getElementById("myBtm1");
-var spa = document.getElementById("spa")
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btm.onclick = function() {
-  medal1.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-spa.onclick = function() {
-  medal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == medal) {
-    medal.style.display = "none";
-  }
-}
-}
-  </script>
 	</body>
 </html>
 

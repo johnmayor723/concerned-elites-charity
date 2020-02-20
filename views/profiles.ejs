@@ -67,10 +67,13 @@
 <div id ="nome"> 
  <div class="container grey lighten-2">
    <div class="row">
-     <div class="col-md-6">
+     <div class="col-md-4">
       <a class="btn purple-gradient btn-block"  href="/projectlists" method="get">click to see all projects</a>
      </div>
-     <div class="col-md-6">
+     <div class="col-md-4">
+      <a class="btn purple-gradient btn-block"  href="/photoslists" method="get">click to see Gallery</a>
+     </div>
+     <div class="col-md-4">
       <a class="btn purple-gradient btn-block"  href="/memberslists" method="get">click to see all members</a>
      </div>
    </div>
@@ -80,7 +83,7 @@
 <div class="mecontent">
  <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
        <form class="text-center border border-light p-5" action="/createProject" method="post" enctype="multipart/form-data">
 
     <p class="h4 mb-4">New Projects</p>
@@ -102,7 +105,29 @@
     <button class="btn btn-info btn-block my-4" type="submit">Create project</button>
 </form>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
+       <form class="text-center border border-light p-5" action="/photos" method="post" enctype="multipart/form-data">
+
+    <p class="h4 mb-4">New Photos</p>
+
+    <!-- project title -->
+    <input type="text"  class="form-control mb-4" placeholder="tittle" name ="title">
+
+    <!-- Project description -->
+    <textarea type="text"  class="form-control mb-4" placeholder="description" name="desc">
+     </textarea>
+     
+    <div class="d-flex justify-content-around">
+    </div>
+    
+     <input type= "file" class="form-control" placeholder="upload image" name='image'>
+
+    
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit">Click to Upload</button>
+</form>
+    </div>
+    <div class="col-md-4">
         <form class="text-center border border-light p-5" action="/profiles" Method="post"  enctype="multipart/form-data">
 
     <p class="h4 mb-4">Create Profiles</p>

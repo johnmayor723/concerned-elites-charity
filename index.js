@@ -10,6 +10,7 @@ const app = express()
 const User = require("./models/user")
 const Profile = require("./models/profile")
 const Project = require("./models/project")
+const Photo = require('./models/photo')
 const userRoutes = require('./routes/user')
 const projectRoutes = require('./routes/project')
 const profileRoutes = require('./routes/profile')
@@ -51,15 +52,15 @@ var upload = multer({ storage: storage })
 //main routes
 
 app.get("/", function(req, res){
-    Project.find({}, function(err, projects){
-        res.render("index",{projects:projects} )
+    Photo.find({}, function(err, projects){
+        res.render("index",{photos:projects} )
     })
     
 })
 app.get("/home", function(req, res) {
     res.redirect("/")
 })
-
+    
 app.get('/about', function(req, res){
     Profile.find({}, function(err, profiles){
        
@@ -165,7 +166,31 @@ app.get("/memberslists", function(req, res){
         } 
     })
 })
-
+//Gallery Routes
+app.get('/photoslists', function(req, res){
+    Photo.find({}, function(err, photos){
+       if(req.isAuthenthicated){
+            var admin = req.user
+            res.render('photoslist', {photos :photos, admin:admin})
+       }
+        
+    })
+})
+//create Photo
+app.post('/photos', upload.single('image'), function(req, res){
+    var title = req.body.title
+    var description = req.body.desc
+    var image = "files/"+req.file.filename;
+    var newPhoto = {title, description, image}
+    Photo.create(newPhoto, function(err, uploaded){
+        if(err){
+            
+        } else {
+            console.log(uploaded)
+            res.redirect('/photoslists')
+        }
+    })
+})
 //create members profile
 app.post('/profiles',upload.single('image'), function(req, res){
     var firstname        = req.body.firstname;
