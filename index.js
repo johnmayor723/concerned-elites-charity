@@ -109,7 +109,7 @@ app.get('/signIn', function(req, res) {
 app.post("/login", passport.authenticate("local", 
     {
         successRedirect: "/profiles", 
-        failureRedirect: "/login"
+        failureRedirect: "/"
     }), function(req, res){
 });
 
@@ -139,7 +139,7 @@ app.get("/profiles",isLoggedIn , function(req, res) {
 app.get("/projectlists", function(req, res){
      Project.find({}, function(err, found){
         if(err){
-            console.log(err)
+            //console.log(err)
             res.redirect("/home")
         } else{
              if(req.isAuthenticated){
@@ -184,10 +184,10 @@ app.post('/photos', upload.single('image'), function(req, res){
     var newPhoto = {title, description, image}
     Photo.create(newPhoto, function(err, uploaded){
         if(err){
-            
+            res.redirect('/profiles')
         } else {
             console.log(uploaded)
-            res.redirect('/photoslists')
+            res.redirect('/profiles')
         }
     })
 })
